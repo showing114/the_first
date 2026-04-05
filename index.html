@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I can success because I have a try</title>
+    <style>
+        .bst {
+            background-color: firebrick;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            color: white;
+            transition: all 0.2s;
+            font-size: 25px;
+        }
+        .bst:active {
+            background-color: rgb(102, 20, 20);
+            transform: scale(0.9);
+        }
+    </style>
+    <style>
+        body{
+            /*background-color: rgb(104, 104, 104);*/
+            background-image: url(xianshi.jpg);  /*图片*/
+                background-size: cover;
+                background-position: center;
+                min-height: 100vh;
+        }
+    </style>
+    <style>
+        .box{
+            width: 200px;
+            height: 120px;
+            background-color: rgb(255, 187, 0);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 25px;
+            transition: all 0.1s;
+        }
+        .box:active {
+            background-color: rgb(255, 166, 0);
+            transform: scale(0.9);
+        }
+    </style>
+    <style>
+        div{
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <button id="click" class="bst">click me!</button>
+        <button id="ade" class="bst">money per click:1</button><span style="font-size: 50px;color: rgb(255, 166, 0);font-weight: 900;">cost 20</span>
+    </div>
+    <div>
+        <span id="zd" style="font-size: 50px;color: salmon;font-weight: 900;">automatic🤖:0</span>                                                                  
+        <button id="faster" class="bst">Improve machine efficiency</button><span style="font-size: 50px;color: rgb(255, 166, 0);font-weight: 900;">cost 100</span>
+    </div>
+    <div>
+        <button id="unlock" class="bst" >unlock box</button>
+        <span style="font-size: 50px;color: rgb(255, 166, 0);font-weight: 900;">cost 1000</span>
+    </div>
+    <div>
+        <button id="lottery" class="box" style="width: 170px;height: 100px;">lottery:500 $ once</button>
+        <button id="addscope" class="box" style="width: 170px;height: 100px;">add money of lottery</button>
+        <span style="font-size: 50px;color: rgb(255, 166, 0);font-weight: 900;">cost 300</span>
+        <p style="font-size: 50px;color: rgb(255, 166, 0);font-weight: 900;font-size: 30px;" id="scope">Probability of obtaining $250 to $750</p>
+    </div>
+    <p id="count" style="font-size: 50px;color: cyan;font-style: italic;font-weight: 500;">0</p>
+    
+    <br><br><br><br><br><br>   
+    
+    <button id="box" class="box" style="display: none;">click to open the restart!</button>
+    <script>
+        let num = 0;
+        let evclick=1;
+        let zdclick=0;
+        let unlock=false;
+        let time=0;
+        let lotterymoney=500;
+        let addscope=0;
+        document.getElementById('click').addEventListener('click', function(){//可以不用使用变量存储按钮元素，直接在事件监听器中使用匿名函数
+            num+=evclick;
+            document.getElementById('count').textContent = num;//可以直接使用textContent属性来更新文本内容，无需使用innerText
+        });
+        document.getElementById('ade').addEventListener('click',function(){
+            if(num>=20){
+                num-=20;
+                evclick+=1;
+                document.getElementById('count').textContent = num;
+                document.getElementById('ade').textContent = `money per click:${evclick}`;//可以直接使用textContent属性来更新文本内容，无需使用innerText
+            }else{
+                alert('not enough money!');
+            }
+        });
+        //手动
+
+        document.getElementById('faster').addEventListener('click',function(){
+            if(num>=100){
+                num-=100;
+                zdclick+=1;
+                document.getElementById('count').textContent = num;
+                document.getElementById('zd').textContent = `automatic🤖:${zdclick}`;
+            }else{
+                alert('not enough money!');
+            }
+        });
+        setInterval(function(){
+            num+=zdclick;
+            document.getElementById('count').textContent = num;
+        },1000);
+        //自动
+
+        document.getElementById('unlock').addEventListener('click',function(){
+            if(num>=1000){
+                num-=1000;
+                unlock=true;
+                document.getElementById('count').textContent = num;
+                document.getElementById('unlock').style.display = 'none';
+            }else{
+                alert('not enough money!');
+            }
+        });
+       setInterval(function() {
+            if(unlock){//判断语句不能写在计时器里 否则会导致每次判断都添加一个新的计时器
+                time+=1;
+                if(time===180){
+                    document.getElementById('box').style.display = 'block';
+                    unlock=false;//显示之后不继续增加time
+                }
+            }
+        }, 1000);//点击事件不能写在计时器里 否则会导致每次都绑定一个同样的新事件 导致点击触发多次
+        document.getElementById('box').addEventListener('click',function(){
+            num+=150;
+            document.getElementById('count').textContent = num;
+            document.getElementById('box').style.display = 'none';
+            time=0;
+            unlock=true;//点击之后增加time
+        });
+        //宝箱
+        document.getElementById('lottery').addEventListener('click',function(){
+            if(num>=lotterymoney){
+                num-=lotterymoney;
+                lotterymoney+=50;
+                let lmo=Math.floor(Math.random() * 501) + 250 + addscope;//生成250-750的随机数
+                //Math.random()生成0-1之间的随机小数，乘以501得到0-500之间的随机数，再加上250得到250-750之间的随机数
+                //Math.floor()向下取整，确保中奖金额是整数
+                num+=lmo;
+                document.getElementById('count').textContent = num;
+                document.getElementById('lottery').textContent = `lottery: ${lotterymoney} $ once`;
+                alert(`Congratulations! You got $${lmo}!`);//中奖金额提示
+            }else{
+                alert('not enough money!');
+            }
+        });
+        document.getElementById('addscope').addEventListener('click',function(){
+            if(num>=300){
+                num-=300;
+                addscope+=10;
+                document.getElementById('count').textContent = num;
+                document.getElementById('scope').textContent = `Probability of obtaining $${addscope+250} to $${addscope+750}`;
+            }else{
+                alert('not enough money!');
+            }
+        });
+        //抽奖（可能有bug？）
+        
+    </script>
+</body>
+</html>
