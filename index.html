@@ -51,7 +51,6 @@
     </style>
 </head>
 <body>
-    <p>this web is new!</p>
     <div>
         <button id="click" class="bst">click me!</button>
         <button id="ade" class="bst">money per click:1</button><span style="font-size: 50px;color: rgb(255, 166, 0);font-weight: 900;">cost 20</span>
@@ -62,7 +61,7 @@
     </div>
     <div>
         <button id="unlock" class="bst" >unlock box</button>
-        <span style="font-size: 50px;color: rgb(255, 166, 0);font-weight: 900;">cost 1000</span>
+        <span style="font-size: 50px;color: rgb(255, 166, 0);font-weight: 900;" id="locktext">cost 1000</span>
     </div>
     <div>
         <button id="lottery" class="box" style="width: 170px;height: 100px;">lottery:500 $ once</button>
@@ -121,6 +120,7 @@
                 unlock=true;
                 document.getElementById('count').textContent = num;
                 document.getElementById('unlock').style.display = 'none';
+                document.getElementById('locktext').style.display = 'none';
             }else{
                 alert('not enough money!');
             }
