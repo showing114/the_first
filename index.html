@@ -47,9 +47,25 @@
     <style>
         div{
             margin: 15px 0;
-
-
-          *[id*="translate"], *[class*="translate"],
+        }
+        /* 彻底隐藏360/浏览器翻译的底部原文提示 */
+/* 选中左下角翻译提示文本 + 所有翻译相关容器 */
+body > :last-child,
+div[class*="goog-te"],
+.skiptranslate,
+[style*="z-index: 2147483647"],
+::-webkit-translate-bar {
+  display: none !important;
+  position: absolute !important;
+  left: -9999px !important;
+  top: -9999px !important;
+}
+/* 额外隐藏翻译提示的文本内容 */
+body *:contains("原文"),
+body *:contains("提供更好的翻译建议") {
+  display: none !important;
+}
+        *[id*="translate"], *[class*="translate"],
           body > div[style*="bottom:0"][style*="position:fixed"],
           .trans-notice, .translate-panel {
           display: none !important;
@@ -57,7 +73,6 @@
           height: 0 !important;
           overflow: hidden !important;
             }
-        }
     </style>
 </head>
 <body>
