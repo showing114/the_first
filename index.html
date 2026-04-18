@@ -82,6 +82,54 @@
         let time=0;
         let lotterymoney=500;
         let addscope=0;
+//1111111111111111111111111111111111111111111111111111111111111111111111
+        window.onload = function () {
+            let saveData = localStorage.getItem('gameSave');
+            if (saveData) {
+                let data = JSON.parse(saveData);
+                
+                num = data.num;
+                evclick = data.evclick;
+                zdclick = data.zdclick;
+                unlock = data.unlock;
+                time = data.time;
+                lotterymoney = data.lotterymoney;
+                addscope = data.addscope;
+
+                // 刷新页面显示
+                document.getElementById('count').textContent = num;
+                document.getElementById('ade').textContent = `money per click:${evclick}`;
+                document.getElementById('zd').textContent = `automatic🤖:${zdclick}`;
+                document.getElementById('lottery').textContent = `lottery: ${lotterymoney} $ once`;
+                document.getElementById('scope').textContent = `Probability of obtaining $${addscope+250} to $${addscope+750}`;
+                
+                // 宝箱状态恢复
+                if (unlock === false && time === 180) {
+                    document.getElementById('box').style.display = 'block';
+                }
+                if (unlock === false && time !== 180) {
+                    document.getElementById('unlock').style.display = 'none';
+                }
+            }
+        };
+
+        // ======================================
+        // 【核心】关闭/刷新页面时 → 自动保存
+        // ======================================
+        window.onbeforeunload = function () {
+            let data = {
+                num: num,
+                evclick: evclick,
+                zdclick: zdclick,
+                unlock: unlock,
+                time: time,
+                lotterymoney: lotterymoney,
+                addscope: addscope
+            };
+            localStorage.setItem('gameSave', JSON.stringify(data));
+        };
+// 1111111111111111111111111111111111111111111111111111111111111111111111111111111111
+        
         document.getElementById('click').addEventListener('click', function(){//可以不用使用变量存储按钮元素，直接在事件监听器中使用匿名函数
             num+=evclick;
             document.getElementById('count').textContent = num;//可以直接使用textContent属性来更新文本内容，无需使用innerText
