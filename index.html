@@ -48,11 +48,18 @@
         div{
             margin: 15px 0;
         }
-        .footd{
+        .footd {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
+            height: 50px;
+            background: rgb(255, 163, 42);
+            color: white;
+            text-align: center;
+            line-height: 50px;
+            z-index: 999;
+            font-size: 20px;
         }
     </style>
 </head>
@@ -81,7 +88,10 @@
     <br><br><br><br><br><br>   
     
     <button id="box" class="box" style="display: none;">click to open the restart!</button>
-    <div class="footd">文本</div>
+    <div class="footd">
+        本网站全部由bilibili@<a href="https://space.bilibili.com/1443283189" target="_blank">1个膨胀的显示</a>制作
+            连接的github仓库:<a href="https://github.com/showing114/the_first" target="_blank">https://github.com/showing114/the_first</a>
+    </div>
     <script>
         let num = 0;
         let evclick=1;
