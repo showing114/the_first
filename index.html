@@ -60,7 +60,7 @@
         <button id="faster" class="bst">Improve machine efficiency</button><span style="font-size: 50px;color: rgb(255, 166, 0);font-weight: 900;">cost 100</span>
     </div>
     <div>
-        <button id="unlock" class="bst" style="display:block;">unlock box</button>
+        <button id="unlock" class="bst">unlock box</button>
         <span style="font-size: 50px;color: rgb(255, 166, 0);font-weight: 900;" id="locktext">cost 1000</span>
     </div>
     <div>
@@ -105,12 +105,12 @@
                 document.getElementById('scope').textContent = `Probability of obtaining $${addscope+250} to $${addscope+750}`;
                 
                 // 宝箱状态恢复
-                if (unlock === false && time === 180) {
+                /*if (unlock === false && time === 180) {
                     document.getElementById('box').style.display = 'block';
                 }
                 if (unlock === false && time !== 180) {
                     document.getElementById('unlock').style.display = 'none';
-                }
+                }*/
             }
         };
 
