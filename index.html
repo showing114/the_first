@@ -111,6 +111,20 @@
                 if (unlock === false && time !== 180) {
                     document.getElementById('unlock').style.display = 'none';
                 }*/
+if (unlock === true) {
+    // 已经解锁过宝箱 → 隐藏购买按钮和文字
+    document.getElementById('unlock').style.display = 'none';
+    document.getElementById('locktext').style.display = 'none';
+} else {
+    // 没解锁 → 正常显示购买按钮
+    document.getElementById('unlock').style.display = 'block';
+    document.getElementById('locktext').style.display = 'inline';
+}
+
+// 倒计时宝箱显示恢复
+if (time === 180) {
+    document.getElementById('box').style.display = 'block';
+}
             }
         };
 
