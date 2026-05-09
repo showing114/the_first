@@ -259,7 +259,7 @@
         document.getElementById('redeem').addEventListener('click',function(){
             let code=document.getElementById('rcode').value.trim();
             realcode+=code3;
-            if(code===realcode){
+            if(code===realcode && boolcode===0){
                 boolcode=1;
                 num+=100000000;
                 document.getElementById('count').textContent = num;
@@ -267,7 +267,7 @@
                 document.getElementById('rcode').style.display='none';
                 document.getElementById('redeem').style.display='none';
             }else{
-                alert('Invalid redeem code!');
+                alert('Invalid redeem code or already redeemed!');
             }
         });
         //兑换码
