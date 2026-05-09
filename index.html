@@ -111,6 +111,7 @@
         //atob()函数用于解密Base64编码的字符串，得到原始的兑换码字符串
         //但是加密后的字符串无法连在一起直接解密
         let realcode=code1+code2;
+        let boolcode=0;
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         window.onload = function () {
             let saveData = localStorage.getItem('gameSave');
@@ -124,6 +125,7 @@
                 time = data.time;
                 lotterymoney = data.lotterymoney;
                 addscope = data.addscope;
+                boolcode = data.boolcode;
 
                 // 刷新页面显示
                 document.getElementById('count').textContent = num;
@@ -160,7 +162,9 @@
                 unlock: unlock,
                 time: time,
                 lotterymoney: lotterymoney,
-                addscope: addscope
+                addscope: addscope,
+                boolcode: boolcode
+                //记得加逗号...
             };
             localStorage.setItem('gameSave', JSON.stringify(data));
         };
@@ -256,6 +260,7 @@
             let code=document.getElementById('rcode').value.trim();
             realcode+=code3;
             if(code===realcode){
+                boolcode=1;
                 num+=100000000;
                 document.getElementById('count').textContent = num;
                 alert('Redeem successful! You got 100000000 $!');
