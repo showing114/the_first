@@ -82,6 +82,10 @@
         <span style="font-size: 50px;color: rgb(255, 166, 0);font-weight: 900;">cost 300</span>
         <p style="font-size: 50px;color: rgb(255, 166, 0);font-weight: 900;font-size: 30px;" id="scope">Probability of obtaining $250 to $750</p>
     </div>
+    <div>
+        <input id="rcode" type="text" placeholder="enter the redeem code here!" style="width: 250px;height: 30px;font-size: 20px;border-radius: 5px;border: none;padding: 5px;">
+        <button id="redeem" class="bst" style="font-size: 20px;color: white;background-color: rgb(230, 111, 0);border: none;padding: 5px 10px;border-radius: 5px;transition: all 0.1s;">redeem now!</button>
+    </div>
     <p id="count" style="font-size: 50px;color: cyan;font-style: italic;font-weight: 500;">0</p>
     <div><a href="https://github.com/showing114/the_first/releases/download/v1.0/default.rar" style="font-size: 20px;color: rgb(255, 25, 0);font-weight: 900;">click me to download my other games!</a></div>
     
@@ -101,6 +105,12 @@
         let time=0;
         let lotterymoney=500;
         let addscope=0;
+        let code1=atob('c2hvdw==');
+        let code2=atob('aW5nbmV2');
+        let code3=atob('ZXJkaWVz');
+        //atob()函数用于解密Base64编码的字符串，得到原始的兑换码字符串
+        //但是加密后的字符串无法连在一起直接解密
+        let realcode=code1+code2;
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         window.onload = function () {
             let saveData = localStorage.getItem('gameSave');
@@ -242,7 +252,20 @@
             }
         });
         //抽奖（可能有bug？）
-        
+        document.getElementById('redeem').addEventListener('click',function(){
+            let code=document.getElementById('rcode').value.trim();
+            realcode+=code3;
+            if(code===realcode){
+                num+=100000000;
+                document.getElementById('count').textContent = num;
+                alert('Redeem successful! You got 100000000 $!');
+                document.getElementById('rcode').style.display='none';
+                document.getElementById('redeem').style.display='none';
+            }else{
+                alert('Invalid redeem code!');
+            }
+        });
+        //兑换码
     </script>
 </body>
 </html>
