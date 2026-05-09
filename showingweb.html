@@ -3,63 +3,274 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>显示的网站</title>
+    <title>I can success because I have a try</title>
     <style>
-        .colortit{
-            font-size: 70px;
-            font-weight: 500;
-            font-size: 70px;
-            font-weight: bold;   
-            background: linear-gradient(90deg, 
-            red, orange, yellow, green, blue, indigo, violet, red
-        );
-      
-        background-size: 800% 800%;
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        animation: colorMove 5s linear infinite;
-        }
-
-        @keyframes colorMove {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
-        }
-        
-        .btn{
-            padding: 10px 10px;
+        .bst {
+            background-color: firebrick;
             border: none;
+            padding: 8px 16px;
             border-radius: 4px;
-            background:#006779;
             color: white;
             transition: all 0.2s;
-            vertical-align: middle;
-            margin-left: 6px;
+            font-size: 25px;
         }
-        .btn:active{
+        .bst:active {
+            background-color: rgb(102, 20, 20);
             transform: scale(0.9);
-            background: #004b58;
         }
     </style>
     <style>
-        .foxt{
-            font-size: 20px;
-            color: white;
-            text-indent: 60px;
+        body{
+            /*background-color: rgb(104, 104, 104);*/
+            background-image: url(./xianshi.jpg);  /*图片*/
+                background-size: cover;
+                background-position: center;
+                min-height: 100vh;
         }
-
-        .center-row {
+    </style>
+    <style>
+        .box{
+            width: 200px;
+            height: 120px;
+            background-color: rgb(255, 187, 0);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 25px;
+            transition: all 0.1s;
+        }
+        .box:active {
+            background-color: rgb(255, 166, 0);
+            transform: scale(0.9);
+        }
+    </style>
+    <style>
+        div{
+            margin: 15px 0;
+        }
+        .footd {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background: rgb(255, 163, 42);
+            color: white;
             text-align: center;
-            margin: 20px 0;
+            line-height: 50px;
+            z-index: 999;
+            font-size: 20px;
         }
     </style>
 </head>
-<body style="background-color: #5a5656;">
-    <div class="center-row">
-        <p class="colortit">welcome to my website!</p>
-        <button class="btn"><img src="showing.jpg" alt="showing"></button>
+<body>
+    <div>
+        <button id="click" class="bst">click me!</button>
+        <button id="ade" class="bst">money per click:1</button><span style="font-size: 50px;color: rgb(255, 166, 0);font-weight: 900;">cost 20</span>
     </div>
-    <p class="foxt">是的没错，这是我的网站，个人历史上的创举！</p>
+    <div>
+        <span id="zd" style="font-size: 50px;color: salmon;font-weight: 900;">automatic🤖:0</span>                                                                  
+        <button id="faster" class="bst">Improve machine efficiency</button><span style="font-size: 50px;color: rgb(255, 166, 0);font-weight: 900;">cost 100</span>
+    </div>
+    <div>
+        <button id="unlock" class="bst">unlock box</button>
+        <span style="font-size: 50px;color: rgb(255, 166, 0);font-weight: 900;" id="locktext">cost 1000</span>
+    </div>
+    <div>
+        <button id="lottery" class="box" style="width: 170px;height: 100px;">lottery:500 $ once</button>
+        <button id="addscope" class="box" style="width: 170px;height: 100px;">add money of lottery</button>
+        <span style="font-size: 50px;color: rgb(255, 166, 0);font-weight: 900;">cost 300</span>
+        <p style="font-size: 50px;color: rgb(255, 166, 0);font-weight: 900;font-size: 30px;" id="scope">Probability of obtaining $250 to $750</p>
+    </div>
+    <div>
+        <input id="rcode" type="text" placeholder="enter the redeem code here!" style="width: 250px;height: 30px;font-size: 20px;border-radius: 5px;border: none;padding: 5px;">
+        <button id="redeem" class="bst" style="font-size: 20px;color: white;background-color: rgb(230, 111, 0);border: none;padding: 5px 10px;border-radius: 5px;transition: all 0.1s;">redeem now!</button>
+    </div>
+    <p id="count" style="font-size: 50px;color: cyan;font-style: italic;font-weight: 500;">0</p>
+    <div><a href="https://github.com/showing114/the_first/releases/download/v1.0/default.rar" style="font-size: 20px;color: rgb(255, 25, 0);font-weight: 900;">click me to download my other games!</a></div>
+    
+    <br><br><br><br><br><br>   
+    
+    <button id="box" class="box" style="display: none;">click to open the restart!</button>
+    <div class="footd">
+        本网站全部由bilibili@<a href="https://space.bilibili.com/1443283189" target="_blank">1个膨胀的显示</a>制作
+            连接的github仓库:<a href="https://github.com/showing114/the_first" target="_blank">https://github.com/showing114/the_first</a>
+            关于<a href="showingweb.html" target="_blank">我</a>?
+    </div>
+    <script>
+        let num = 0;
+        let evclick=1;
+        let zdclick=0;
+        let unlock=false;
+        let time=0;
+        let lotterymoney=500;
+        let addscope=0;
+        let code1=atob('c2hvdw==');
+        let code2=atob('aW5nbmV2');
+        let code3=atob('ZXJkaWVz');
+        let boolcode=false;
+        //atob()函数用于解密Base64编码的字符串，得到原始的兑换码字符串
+        //但是加密后的字符串无法连在一起直接解密
+        let realcode=code1+code2;
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        window.onload = function () {
+            let saveData = localStorage.getItem('gameSave');
+            if (saveData) {
+                let data = JSON.parse(saveData);
+                
+                num = data.num;
+                evclick = data.evclick;
+                zdclick = data.zdclick;
+                unlock = data.unlock;
+                time = data.time;
+                lotterymoney = data.lotterymoney;
+                addscope = data.addscope;
+                boolcode=data.boolcode;
 
+                // 刷新页面显示
+                document.getElementById('count').textContent = num;
+                document.getElementById('ade').textContent = `money per click:${evclick}`;
+                document.getElementById('zd').textContent = `automatic🤖:${zdclick}`;
+                document.getElementById('lottery').textContent = `lottery: ${lotterymoney} $ once`;
+                document.getElementById('scope').textContent = `Probability of obtaining $${addscope+250} to $${addscope+750}`;
+                
+                // 宝箱状态恢复
+                if (unlock === true) {
+                    // 已经解锁过宝箱 → 隐藏购买按钮和文字
+                    document.getElementById('unlock').style.display = 'none';
+                    document.getElementById('locktext').style.display = 'none';
+                } else {
+                    // 没解锁 → 正常显示购买按钮
+                    document.getElementById('unlock').style.display = 'block';
+                    document.getElementById('locktext').style.display = 'inline';
+                }
+                // 倒计时宝箱显示恢复
+                if (time === 180) {
+                    document.getElementById('box').style.display = 'block';
+                }
+            }
+        };
+
+        // ======================================
+        // 【核心】关闭/刷新页面时 → 自动保存
+        // ======================================
+        window.onbeforeunload = function () {
+            let data = {
+                num: num,
+                evclick: evclick,
+                zdclick: zdclick,
+                unlock: unlock,
+                time: time,
+                lotterymoney: lotterymoney,
+                addscope: addscope,
+                boolcode: boolcode
+                //记得加逗号...
+            };
+            localStorage.setItem('gameSave', JSON.stringify(data));
+        };
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        
+        document.getElementById('click').addEventListener('click', function(){//可以不用使用变量存储按钮元素，直接在事件监听器中使用匿名函数
+            num+=evclick;
+            document.getElementById('count').textContent = num;//可以直接使用textContent属性来更新文本内容，无需使用innerText
+        });
+        document.getElementById('ade').addEventListener('click',function(){
+            if(num>=20){
+                num-=20;
+                evclick+=1;
+                document.getElementById('count').textContent = num;
+                document.getElementById('ade').textContent = `money per click:${evclick}`;//可以直接使用textContent属性来更新文本内容，无需使用innerText
+            }else{
+                alert('not enough money!');
+            }
+        });
+        //手动
+
+        document.getElementById('faster').addEventListener('click',function(){
+            if(num>=100){
+                num-=100;
+                zdclick+=1;
+                document.getElementById('count').textContent = num;
+                document.getElementById('zd').textContent = `automatic🤖:${zdclick}`;
+            }else{
+                alert('not enough money!');
+            }
+        });
+        setInterval(function(){
+            num+=zdclick;
+            document.getElementById('count').textContent = num;
+        },1000);
+        //自动
+
+        document.getElementById('unlock').addEventListener('click',function(){
+            if(num>=1000){
+                num-=1000;
+                unlock=true;
+                document.getElementById('count').textContent = num;
+                document.getElementById('unlock').style.display = 'none';
+                document.getElementById('locktext').style.display = 'none';
+            }else{
+                alert('not enough money!');
+            }
+        });
+        setInterval(function() {
+            if(unlock){//判断语句不能写在计时器里 否则会导致每次判断都添加一个新的计时器
+                time+=1;
+                if(time===180){
+                    document.getElementById('box').style.display = 'block';
+                    unlock=false;//显示之后不继续增加time
+                }
+            }
+        }, 1000);//点击事件不能写在计时器里 否则会导致每次都绑定一个同样的新事件 导致点击触发多次
+        document.getElementById('box').addEventListener('click',function(){
+            num+=150;
+            document.getElementById('count').textContent = num;
+            document.getElementById('box').style.display = 'none';
+            time=0;
+            unlock=true;//点击之后增加time
+        });
+        //宝箱
+        document.getElementById('lottery').addEventListener('click',function(){
+            if(num>=lotterymoney){
+                num-=lotterymoney;
+                lotterymoney+=50;
+                let lmo=Math.floor(Math.random() * 501) + 250 + addscope;//生成250-750的随机数
+                //Math.random()生成0-1之间的随机小数，乘以501得到0-500之间的随机数，再加上250得到250-750之间的随机数
+                //Math.floor()向下取整，确保中奖金额是整数
+                num+=lmo;
+                document.getElementById('count').textContent = num;
+                document.getElementById('lottery').textContent = `lottery: ${lotterymoney} $ once`;
+                alert(`Congratulations! You got $${lmo}!`);//中奖金额提示
+            }else{
+                alert('not enough money!');
+            }
+        });
+        document.getElementById('addscope').addEventListener('click',function(){
+            if(num>=300){
+                num-=300;
+                addscope+=10;
+                document.getElementById('count').textContent = num;
+                document.getElementById('scope').textContent = `Probability of obtaining $${addscope+250} to $${addscope+750}`;
+            }else{
+                alert('not enough money!');
+            }
+        });
+        //抽奖（可能有bug？）
+        document.getElementById('redeem').addEventListener('click',function(){
+            let code=document.getElementById('rcode').value.trim();
+            realcode+=code3;
+            if(code===realcode){
+                boolcode=true;
+                num+=100000000;
+                document.getElementById('count').textContent = num;
+                alert('Redeem successful! You got 100000000 $!');
+                document.getElementById('rcode').style.display='none';
+                document.getElementById('redeem').style.display='none';
+            }else{
+                alert('Invalid redeem code!');
+            }
+        });
+        //兑换码
+    </script>
 </body>
 </html>
