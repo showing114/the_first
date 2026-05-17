@@ -47,10 +47,23 @@
             color: white;
             text-indent: 60px;
         }
-
+        .titxt{
+            font-size: 30px;
+            color: rgb(51, 51, 51);
+        }
         .center-row {
             text-align: center;
             margin: 20px 0;
+        }
+    </style>
+    <style>
+        .vidcs {
+            display: block;
+            margin: 20px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 1000px;
         }
     </style>
 </head>
@@ -60,6 +73,26 @@
         <button class="btn"><img src="showing.jpg" alt="showing"></button>
     </div>
     <p class="foxt">是的没错，这是我的网站，个人历史上的创举！</p>
-
+    <div class="center-row">
+        <p class="foxt">关于，我的作品？</p>
+        <p class="titxt">我的第一个网站的建立！</p>
+        <video src="我的第一网站.mp4" controls autoplay loop class="vidcs"></video>
+        <p class="titxt">Scratch那些有用没用的小技巧2.0</p>
+        <video src="Scratch那些有用没用的小技巧2.0.mp4" controls autoplay loop class="vidcs"></video>
+        <a href="https://space.bilibili.com/1443283189/upload/video" target="_blank">更多我的B站作品...</a>
+    </div>
+    <script>
+        if (history.scrollRestoration) {
+            history.scrollRestoration = 'manual';
+        }
+        window.scrollTo({top: 0, left: 0, behavior: 'instant'});
+        document.addEventListener('DOMContentLoaded', () => {
+            window.scrollTo(0, 0);
+        });
+        window.addEventListener('load', () => {
+            setTimeout(()=>window.scrollTo(0,0),10);
+        });
+        // 监听滚动事件，保持页面在顶部
+</script>
 </body>
 </html>
